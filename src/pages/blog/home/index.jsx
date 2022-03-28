@@ -46,10 +46,10 @@ export default memo(function ZYBlogHome() {
         
         <ZYBottonContent moments={ moments}/>
       </HomeButtonWrapper>
-      <ReactLive2d
+      {/* <ReactLive2d
         width={300}
         height={500}
-    />
+    /> */}
     </BlogHomeWrapper>
   );
 });

@@ -29,7 +29,7 @@ useEffect(() => {
 
 function getBannerLists(){
   getBannerList().then( res => {
-    setImages(res.imgaes)
+    setImages(res?.imgaes)
   })
 }
 const bannerChange = useCallback((from, to) => {
@@ -41,7 +41,7 @@ const bgImage = images[currentIndex]
   return (
     <BannerListWrapper >
       <Bgerapper bgImage={bgImage}>
-666
+
       </Bgerapper>
       <BannerWrapperLeft>
       <div className='wrap-v2'>
@@ -49,9 +49,9 @@ const bgImage = images[currentIndex]
       {images.map((item, index) => {
         return(
           <div className="itemImage" key={item}>
-          <img src={item} alt="..." />
+          <img src={item + '?type=middle'} alt="..." />
           <ReadMoreWrapper>
-            <img src={item} alt="..." />
+            <img src={item +'?type=small'} alt="..." />
             <div className='nextWrapper'>
               <div className='btn left' onClick={e =>  bannerRef.current.prev()}><LeftOutlined /></div>
               <div className='btn right' onClick={e =>  bannerRef.current.next()}><RightOutlined /></div>

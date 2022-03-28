@@ -4,8 +4,11 @@ import React, { memo, useState } from 'react'
 import { RightCardWrapper, ItemCardWraper} from './style'
 import { Card, Avatar, Drawer, Button, Tag, Row, Col  } from 'antd';
 import { EditOutlined, EllipsisOutlined, SettingOutlined ,CommentOutlined,LikeOutlined } from '@ant-design/icons';
+import LazyLoad from 'react-lazyload';
 
 import ZYComment from './comment'
+
+import placeholder  from '../../../../../../../assets/img/loading/loading.gif'
 
 import { getMomentById } from '@/services/blog/blog'
 import { useHistory } from 'react-router-dom';
@@ -32,10 +35,10 @@ export default memo(function ZYRightCard(props) {
  const showDetail = (id) =>{
    history.push({pathname:`/Blog/moment/${id}`, state:{id}})
  }
-
+ var holderImg = <img style={{width:'100%',height: '100%'}} src={placeholder} />
   return (
     <RightCardWrapper>
-      <Row gutter={20}>
+      {/* <Row gutter={20}>
       {moments.map((item, index) => {
         return (
           <ItemCardWraper key={item.id}> 
@@ -51,7 +54,7 @@ export default memo(function ZYRightCard(props) {
              style={{height:180}}
              onClick={e => showDetail(item.id)}
                alt="example"
-               src={item.imgaes ? item.imgaes[0]:'http://106.14.167.231:3000/users/7/avatar'}
+               src={item.imgaes ? item.imgaes[0] +'?type=middle':'http://106.14.167.231:3000/users/7/avatar'}
              />
            }
            actions={[
@@ -73,9 +76,26 @@ export default memo(function ZYRightCard(props) {
               </ItemCardWraper>
         )
       })}
-      </Row>
+      </Row> */}
      
-      
+  
+        {moments.map((item, index) => {
+          return <div key={item.id} className='cardInfoWrapper' >
+            <div  onClick={e => showDetail(item.id)}>
+              <LazyLoad placeholder={holderImg}>
+              <img className='image' src={item.imgaes ? item.imgaes[0] +'?type=middle':'http://106.14.167.231:3000/users/7/avatar'} alt="" />
+              </LazyLoad>
+                   
+                    <div className='hoverTitle'>  {item.momentTitle ? item.momentTitle : ''}</div>
+                  <div className="titleInfo">
+                    <div className="title">
+                      {item.momentTitle ? item.momentTitle : ''}
+                      <Tag  className='tag' color="#87d068">前端</Tag>
+                    </div>
+                  </div>
+                </div>
+          </div>
+        })}
      <Drawer title="最新评论" placement="bottom" onClose={onClose} visible={visible}>
         <ZYComment momentInfo={ momentInfo }/>
       </Drawer>
