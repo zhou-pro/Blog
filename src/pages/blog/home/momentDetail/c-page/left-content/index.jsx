@@ -18,7 +18,7 @@ import { LeftContentWrapper,
          AuthorInfoWrapper
       } from './style'
 
-import { Input, Avatar, Button, Image, message, Spin} from 'antd'
+import { Input, Avatar, Button, Image, message, Spin, Tag} from 'antd'
 import { UserOutlined } from '@ant-design/icons';
 import { useEffect } from 'react'
 const { TextArea } = Input;
@@ -57,6 +57,12 @@ const sendComment = (id) => {
          <span>{ formdat }</span>
          </div>
 
+       </div>
+       <div className='labelWrapper'>
+         {info.labels?info.labels.map((item, index) => {
+           return <div className='tag' key={item.id}>{item.name}</div>
+         }):''}
+      
        </div>
        <div><Button  size="middle">关注</Button></div>
      </AuthorInfoWrapper>

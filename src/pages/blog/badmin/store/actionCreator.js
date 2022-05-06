@@ -6,6 +6,8 @@ const changeMomentsAction = res => ({
   moments: res
 })
 
+
+
 export const getAllMoments = limit => {
   return dispatch => {
     getAllMoment(limit).then( res => {
@@ -13,3 +15,4 @@ export const getAllMoments = limit => {
     })
   }
 }
+

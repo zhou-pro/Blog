@@ -9,6 +9,8 @@ function reducer(state=defaultState, action){
   switch(action.type){
     case actionTypes.CHANGE_MOMENTS:
       return state.set('moments',action.moments)
+   case actionTypes.CHANGE_MOMENTS_CATE:
+      return state.set('moments',action.moments)
     default:
     return state
   }

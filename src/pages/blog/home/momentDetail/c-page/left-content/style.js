@@ -8,9 +8,27 @@ export const LeftContentWrapper = styled.div`
 `
 export const AuthorInfoWrapper = styled.div`
 display: flex;
+position:relative ;
 justify-content: space-between;
 button{
   margin: 20px 10px;
+}
+.labelWrapper{
+  height:40px ;
+  position:absolute ;
+  left:25% ;
+  top:50% ;
+  display: flex;
+  .tag{
+    padding:0 2px;
+    margin-right:5px ;
+    height:20px ;
+    text-align:center ;
+    line-height:20px ;
+    background-color: #eee;
+    color:#FFFFFF ;
+    border-radius:4px ;
+  }
 }
 
 `

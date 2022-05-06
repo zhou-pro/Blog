@@ -37,17 +37,18 @@ export default memo(function ZYBadmin(props) {
       <Sider  trigger={null} style={{backgroundColor:"#20232B"}} className='silder' collapsed={collapsed}>
       <div className="logo" >创作者中心</div>
        <Menu       
-       defaultSelectedKeys={['/addMoment']}
+       defaultSelectedKeys={['/number']}
        theme="dark"
-       defaultOpenKeys={['sub4']}
+       defaultOpenKeys={['sub2']}
        mode="inline"
        onClick={e => menuClick(e)}
      >
-       <Menu.Item key="/Blog/home" icon={<HomeOutlined />}>首页</Menu.Item>         
+              
        
        <SubMenu key="sub2" icon={<UserOutlined />} title="用户管理">
          <Menu.Item key="/profil">个人中心</Menu.Item>
          <Menu.Item key="/roles">权限管理</Menu.Item>
+         <Menu.Item key="/number">数据统计</Menu.Item>
          
        </SubMenu>
        <SubMenu key="sub4" icon={<EditOutlined />} title="内容管理">
@@ -56,6 +57,7 @@ export default memo(function ZYBadmin(props) {
          <Menu.Item key="/label">标签管理</Menu.Item>
          
        </SubMenu>
+       <Menu.Item key="/Blog/home" icon={<HomeOutlined />}>首页</Menu.Item>  
      </Menu>
 
      

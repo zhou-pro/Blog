@@ -3,8 +3,10 @@ import axios from 'axios'
 import { getCache } from '../../utils/cache'
 
 import { message } from 'antd'
+const  BASE_URL = 'http://106.14.167.231:3000'
+// const  BASE_URL = 'http://localhost:8888'
 const instance = axios.create({
-  baseURL: '/user',
+  baseURL: BASE_URL,
   timeout: 10000
 })
 //请求拦截

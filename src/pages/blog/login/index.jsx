@@ -77,22 +77,33 @@ const onFinishFailed = (errorInfo) => {
       autoComplete="off"
     >
       <Form.Item
+        hasFeedback
         label="用户名"
         name="username"
-        rules={[{ required: true, message: 'Please input your username!' }]}
+        rules={[
+          { required: true, message: 'Please input your username!' },
+          {max:10,message:'用户名不能超过10个字符'},
+          {min:2,message:'用户名不能少于2个字符'},
+          { pattern: new RegExp(/^[0-9a-zA-Z_]{1,}$/, "g") , message: '名称只允许包含数字、字母和下划线' }
+        ]}
       >
         <Input onChange={e => setSignupname(e.target.value)}/>
       </Form.Item>
 
       <Form.Item
+      hasFeedback
         label="密码"
         name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
+        rules={[
+          { required: true, message: 'Please input your password!' },
+          {max:10,message:'密码不能超过10位'},
+          {min:6,message:'密码不能少于6位'}
+        ]}
       >
         <Input.Password onChange={ e => setSignuppassword( e.target.value )}/>
       </Form.Item>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button style={{ width:100,textAlign:'center'}} onClick={e => registerUser()}  type="primary" htmlType="submit">
+        <Button style={{ width:100,textAlign:'center',lineHeight:0}} onClick={e => registerUser()}  type="primary" htmlType="submit">
           注册
         </Button>
       </Form.Item>
@@ -120,14 +131,15 @@ const onFinishFailed = (errorInfo) => {
       </Form.Item>
 
       <Form.Item
+      
         label="密码"
         name="password"
         rules={[{ required: true, message: 'Please input your password!' }]}
       >
-        <Input.Password onChange={e => setPassword(e.target.value)} />
+        <Input.Password  onChange={e => setPassword(e.target.value)} />
       </Form.Item>
-      <Form.Item wrapperCol={{ offset: 6, span: 16 }}>
-        <Button style={{ width:100,textAlign:'center'}} onClick={e => loginByUser()}  type="primary" htmlType="submit">
+      <Form.Item   wrapperCol={{ offset: 6, span: 16 }}>
+        <Button style={{ width:100,textAlign:'center',lineHeight:0}} onClick={e => loginByUser()}  type="primary" htmlType="submit">
           登录
         </Button>
       </Form.Item>
@@ -139,7 +151,7 @@ const onFinishFailed = (errorInfo) => {
     <div className="leftbox">
       <h2 className="title"><span>BLOOM</span><br/>BOUQUET</h2>
       <p className="desc">Pick your perfect <span>bouquet</span></p>
-      <img className="flower smaller" src="https://hbimg.huabanimg.com/c09305167a883e60179a45374df73252304001359acca-W3qbYm_fw658/format/webp" />
+      {/* <img className="flower smaller" src="https://hbimg.huabanimg.com/c09305167a883e60179a45374df73252304001359acca-W3qbYm_fw658/format/webp" /> */}
       <p className="account">Have an account?</p>
       <button className="button"  id="signin" onClick={ e => login(e)}>登录</button>
     </div>
@@ -147,7 +159,7 @@ const onFinishFailed = (errorInfo) => {
     <div className="rightbox">
       <h2 className="title"><span>BLOOM</span><br/>BOUQUET</h2>
       <p className="desc">Pick your perfect <span>bouquet</span></p>
-      <img className="flower" src="https://hbimg.huabanimg.com/b28be92c8198975a74ad656eba00b352c9b9e589819af-lDXUAS_fw658/format/webp" />
+      {/* <img className="flower" src="https://hbimg.huabanimg.com/b28be92c8198975a74ad656eba00b352c9b9e589819af-lDXUAS_fw658/format/webp" /> */}
       <p className="account">Don't have an account?</p>
       <button className="button" id="signup" onClick={e => sigup(e)}>注册</button>
     </div>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const BlogHomeWrapper = styled.div`
-padding: 0 10px;
+padding: 0 0px;
 margin-top: 45px;
 `
 

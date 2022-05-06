@@ -4,14 +4,7 @@ import { LeftDateWrapper,  CardContentWrapper} from './style'
 
 import { Card , Calendar,Collapse  } from 'antd';
 
-const { Panel } = Collapse;
 
-const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
-const { Meta } = Card;
 
 
   
@@ -31,7 +24,7 @@ export default memo(function ZYLeftDate() {
     var curMinute = curDate.getMinutes();
     var curSec = curDate.getSeconds();
      
-    var Current= curYear+timeStr+curMonth+timeStr+curDay+' '+curHour+':'+curMinute+':'+curSec;
+    var Current= curYear+' '+timeStr+' '+curMonth+' '+timeStr+' '+curDay+' '+curHour+':'+curMinute+':'+curSec;
  
     return Current;
     }
@@ -47,30 +40,16 @@ export default memo(function ZYLeftDate() {
 
   return (
     <LeftDateWrapper>
-        <Card
-    hoverable
-    style={{ width: 220}}
-  >
-   <CardContentWrapper>
-     <div   className='time'>
-       {time}
-     </div>   
-     <div className='dot'>
-     <Collapse accordion ghost>
-    <Panel header="day1" key="1">
-      <p>{text}</p>
-    </Panel>
-    <Panel header="day2" key="2">
-      <p>{text}</p>
-    </Panel>
-    <Panel header="day3" key="3">
-      <p>{text}</p>
-    </Panel>
-  </Collapse>
-     </div>
-     {/* <div>最新评论</div> */}
-   </CardContentWrapper>
-  </Card>
+       <CardContentWrapper>
+         <div className='top'>
+           <img src="https://api.adicw.cn/uploads/DfImg/QQ%E5%9B%BE%E7%89%8720190417192123.jpg" alt="" />
+         </div>
+         <div className='bottom'></div>
+         <div className='avatar'>
+           <img src="http://www.zsygg.art:3000/users/1/avatar" alt="" />
+         </div>
+         <div className='time'>{time}</div>
+       </CardContentWrapper>
     </LeftDateWrapper>
   )
 })

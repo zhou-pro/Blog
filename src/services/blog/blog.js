@@ -56,7 +56,7 @@ export function createMoment(data){
 
 export function getBannerList(){
   return request({
-    url:'/moment/27'
+    url:'/moment/29'
   })
 }
 
@@ -79,5 +79,40 @@ export function getCommentByMomentId(query){
   return request({
     url:`/comment`,
     params:query
+  })
+}
+
+//模糊查询
+export function getMomentByKeyword(query){
+  return request({
+    url:`/moment/search`,
+    method:'post',
+    params:query
+  })
+}
+
+export function getMomentByUserId(userId){
+  return request({
+    url:`/moment/user/${userId}`
+  })
+}
+
+export function getCategoryMomentById(cId){
+  return request({
+    url:`moment/category/${cId}`
+  })
+}
+export function getLabelList(query){
+    return request({
+      url:`/label`,
+      params:query
+    })
+}
+
+export function addLabelByMomentId(id,labels){
+  return request({
+    url:`/moment/${id}/labels`,
+    method:'post',
+    data:labels
   })
 }

@@ -3,6 +3,23 @@ import styled from "styled-components";
 
 export const BgcWra = styled.div`
 padding-top: 60px;
+.backTopWrapper{
+       
+       .backTop{
+         width:40px ;
+       height:40px ;
+       background-color: #fff;
+       color: skyblue;
+       border-radius:50% ;
+       text-align:center ;
+       line-height:40px ;
+       font-size:20px ;
+       }
+       .backTop:hover{
+         box-shadow:0px 0px 10px rgba(0,0,0,.3) ;
+         color:#333333 ;
+       }
+     }
 `
 export const BgWrapperT = styled.div`
 width: 100%;
@@ -40,8 +57,10 @@ width: 730px;
 background-color: #fff;
 `
 export const MomentDetailRightWrappwer = styled.div`
-z-index: 9 ;
+
  width: 250px;
   border: 1px solid #d3d3d3;
   border-width: 0 1px;
+  position:relative ;
+  z-index: 9 ;
 `

@@ -1,104 +1,128 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 
 
-import { RightCardWrapper, ItemCardWraper} from './style'
-import { Card, Avatar, Drawer, Button, Tag, Row, Col  } from 'antd';
-import { EditOutlined, EllipsisOutlined, SettingOutlined ,CommentOutlined,LikeOutlined } from '@ant-design/icons';
+import { RightCardWrapper, ItemCardWraper, CategoryWrapper} from './style'
+import { Card, Avatar, Drawer, Button, Tag, Row, Col, BackTop  } from 'antd';
+import {  MessageOutlined, VerticalAlignTopOutlined } from '@ant-design/icons';
 import LazyLoad from 'react-lazyload';
 
-import ZYComment from './comment'
+
 
 import placeholder  from '../../../../../../../assets/img/loading/loading.gif'
+import defaultImg from '../../../../../../../assets/img/default.jpg'
 
-import { getMomentById } from '@/services/blog/blog'
+import { getCateMoment, getAllMoments } from '../../../../store/actionCreator'
+// import { getCategoryMomentById } from '@/services/blog/blog'
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const { Meta } = Card;
 
 
 
 export default memo(function ZYRightCard(props) {
-  const [visible, setVisible] = useState(false);
-  const [momentInfo, setMomentInfo] = useState(null)
+  let { moments } = props
+  const dispath = useDispatch()
+  const [momentInfo, setMomentInfo] = useState([])
+  const [active, setActive] = useState(0)
+  const [cateData,setCateData] = useState([
+    {title:'全部',
+        id: 0
+    },
+    {title:'前端',
+        id: 1
+    },
+    {title:'后端',
+        id: 2
+    },
+    {title:'PHP',
+        id: 3
+    },
+    {title:'人工智能',
+        id: 4
+    },
+    {title:'Python',
+        id: 5
+    },
+    {title:'C++',
+        id: 6
+    },
+  ])
+
+  useEffect(() => {
+    setMomentInfo(moments)
+  },[])
+
 
   let history = useHistory()
-  const showDrawer = async (id) => {
-    setVisible(true);
-   const data = await getMomentById(id)
-   setMomentInfo(data)
-  };
-  const onClose = () => {
-    setVisible(false);
-  };
- const { moments } = props
+
+
+ 
 
  const showDetail = (id) =>{
    history.push({pathname:`/Blog/moment/${id}`, state:{id}})
  }
- var holderImg = <img style={{width:'100%',height: '100%'}} src={placeholder} />
+ const tabClick = id => {
+  setActive(id)
+
+  if(id > 0){
+     dispath(getCateMoment(id))
+  }else{
+    dispath(getAllMoments({ offset: 0, size: 100 }))
+  }
+    
+ 
+ 
+ }
+
+ var holderImg = <img style={{width:'100%',height: '100%'}} src={ placeholder } />
+
   return (
     <RightCardWrapper>
-      {/* <Row gutter={20}>
-      {moments.map((item, index) => {
-        return (
-          <ItemCardWraper key={item.id}> 
-            <Col span={8}>
+      
+      <CategoryWrapper>
+      <div className='tabWrapper'>
+        {cateData.map((item, index) => {
+          return <div
+          onClick={e => tabClick(index)}
+          className={active === index?'itemActive Item':'Item'}
+           key={item.id}>
+            {item.title}
+            <div className={active === index && 'bot'}>
 
-            <Card
-         
-         hoverable
-         size={'small'}
-           style={{ width: 350 , height: 200}}
-           cover={
-             <img
-             style={{height:180}}
-             onClick={e => showDetail(item.id)}
-               alt="example"
-               src={item.imgaes ? item.imgaes[0] +'?type=middle':'http://106.14.167.231:3000/users/7/avatar'}
-             />
-           }
-           actions={[
-             <CommentOutlined  onClick={e => showDrawer(item.id)} key="edit" />,
-             <EditOutlined key="edit" />,
-             <LikeOutlined key="like" />,
-           ]}
-         >
-           <div style={{display:'flex'}}>
-           <Tag color="#87d068">前端</Tag>
-           <Meta
-           onClick={e => showDetail(item.id)}
-             title={item.momentTitle ? item.momentTitle : ''}
-           />
-           </div>
+            </div>
+            </div>
+        })}
+      </div>
+      </CategoryWrapper>
+      <Row gutter={20}>
+      {moments.map((item, index) => {
+          return <Col style={{marginBottom: 10}}  span={ 8 } ><div key={item.id} className={ 'cardInfoWrapper animate__animated animate__rotateInUpLeft' } >
+            
            
-         </Card>
-            </Col>
-              </ItemCardWraper>
-        )
-      })}
-      </Row> */}
-     
-  
-        {moments.map((item, index) => {
-          return <div key={item.id} className='cardInfoWrapper' >
-            <div  onClick={e => showDetail(item.id)}>
+            <div  onClick={e => showDetail(item.id)} >
               <LazyLoad placeholder={holderImg}>
-              <img className='image' src={item.imgaes ? item.imgaes[0] +'?type=middle':'http://106.14.167.231:3000/users/7/avatar'} alt="" />
+              <img className='image' src={item.imgaes ? item.imgaes[0] +'?type=middle':defaultImg} alt="" />
               </LazyLoad>
                    
-                    <div className='hoverTitle'>  {item.momentTitle ? item.momentTitle : ''}</div>
+                    {item.momentTitle && <div className='hoverTitle'>  {item.momentTitle ? item.momentTitle : ''}</div>}
                   <div className="titleInfo">
                     <div className="title">
-                      {item.momentTitle ? item.momentTitle : ''}
-                      <Tag  className='tag' color="#87d068">前端</Tag>
+                     <div className='icon'> <span style={{color:"#9999",lineHeight:1}}><MessageOutlined />{item.commentCount && item.commentCount > 0 ? item.commentCount:''}</span></div>
+                      <Tag  className='tag' color="#87d068">{item?.labels? item.labels[0].name:"前端"}</Tag>
                     </div>
                   </div>
                 </div>
-          </div>
+                
+          </div></Col>
         })}
-     <Drawer title="最新评论" placement="bottom" onClose={onClose} visible={visible}>
-        <ZYComment momentInfo={ momentInfo }/>
-      </Drawer>
+      </Row>
+     
+  
+        
+    <div className='backTopWrapper'>
+      <BackTop className='backTop' visibilityHeight={600}><VerticalAlignTopOutlined /></BackTop>
+    </div>
     </RightCardWrapper>
   )
 })

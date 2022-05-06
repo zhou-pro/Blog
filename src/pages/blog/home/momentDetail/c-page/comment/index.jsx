@@ -23,10 +23,14 @@ export default memo(function ZYComment(props) {
   const [currentIndex, setCurrentIndex] = useState(null)
   const [replyValue, setReplyValue] = useState('')
   const [commentList,setCommentList] = useState([])
+  const [userId, setUserId] = useState(null)
 
-// useEffect(() => {
-//   getCommentList()
-// })
+useEffect(() => {
+  const userInfo = getCache('userInfo')
+  if(userInfo){
+    setUserId(userInfo.id)
+  }
+})
 // const getCommentList = () => {
 //   getCommentByMomentId(momentId).then(res => {
 //     console.log(res);
@@ -83,7 +87,7 @@ const replyCommentById = (id) => {
             <span className="comment-action">{dislikes}</span>
           </span>
         </Tooltip>,
-        <span key="comment-basic-reply-to" onClick={e => replyCommentBox(index)}>回复</span>,<span onClick={e => deleteCom(item.id)}>{item.user.id == getCache("userInfo").id?'删除':''}</span>
+        <span key="comment-basic-reply-to" onClick={e => replyCommentBox(index)}>回复</span>,<span onClick={e => deleteCom(item.id)}>{item.user?.id == userId ?'删除':''}</span>
       ]
       
       return  <CommentWrapper key={item.id}>
@@ -121,7 +125,7 @@ const replyCommentById = (id) => {
         //     <span className="comment-action">{dislikes}</span>
         //   </span>
         // </Tooltip>,
-        <span key="comment-basic-reply-to" onClick={e => replyCommentBox(index)}>回复</span>,<span onClick={e => deleteCom(iten.id)}>{iten.user.id == getCache("userInfo").id?'删除':''}</span>
+        <span key="comment-basic-reply-to" onClick={e => replyCommentBox(index)}>回复</span>,<span onClick={e => deleteCom(iten.id)}>{iten.user.id == userId ?'删除':''}</span>
       ]
       return <div key={iten.id}>{item.id == iten.commentId?<Comment
         actions={action2}
@@ -151,7 +155,7 @@ const replyCommentById = (id) => {
    
    </div>
       </CommentWrapper>
-    }):'暂无评论' }
+    }):<div style={{textAlign:'center',fontSize:10}}>暂无评论哦~~</div> }
     
   </div>:''
 })

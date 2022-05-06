@@ -39,6 +39,7 @@ const ZYAddMoment = React.lazy(_ => import("../pages/blog/badmin/components/addM
 const ZYProfil = React.lazy(_ => import("../pages/blog/badmin/components/profil"))
 const ZYEditMoment = React.lazy(_ => import("../pages/blog/badmin/components/editMoment"))
 const ZYRole = React.lazy(_ => import("../pages/blog/badmin/components/role"))
+const ZYNumber = React.lazy(_ => import("../pages/blog/badmin/components/number"))
 export default [
   {
     path: "/",
@@ -60,7 +61,7 @@ export default [
         path:'/badmin',
         exact: true,
         render: () => (
-          <Redirect to={"/badmin/addMoment"}/>
+          <Redirect to={"/badmin/number"}/>
         )
       },
       {
@@ -78,6 +79,10 @@ export default [
       {
         path:'/badmin/roles',
         component:ZYRole
+      },
+      {
+        path:'/badmin/number',
+        component:ZYNumber
       }
     ]
   },

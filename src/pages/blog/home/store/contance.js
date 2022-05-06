@@ -1,1 +1,2 @@
 export const CHANGE_MOMENTS = 'moment/CHANGE_MOMENTS'
+export const CHANGE_MOMENTS_CATE = 'moment/CHANGE_MOMENTS_CATE'

@@ -76,7 +76,10 @@ body, textarea, select, input, button {
   width: 980px;
   margin: 0 auto;
 }
-
+.wrap-v5 {
+  width: 980px;
+  margin: 0 auto;
+}
 .sprite_01 {
   background: url(../img/sprite_01.png) no-repeat 0 9999px;
 }
@@ -144,4 +147,19 @@ body, textarea, select, input, button {
 span:hover.link {
   text-decoration: underline;
   cursor: pointer;
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  background: pink;
+  border-radius: 10px;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  border-radius: 10px;
 }

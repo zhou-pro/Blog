@@ -56,24 +56,24 @@ export const ReadMoreWrapper = styled.div`
 `
 export const Bgerapper = styled.div`
 background: url(${props => props.bgImage}) center center/8000px;
-/* background-size: 100% 100%; */
-width:100vw;
+background-size: 100% 100%;
+width:99vw;
 height: 350px;
 -webkit-filter: blur(5px);
         -moz-filter: blur(5px);
         -ms-filter: blur(5px);
-        filter: blur(10px);
-
-
+        filter: blur(20px);
 position:absolute;
+
 `
 export const BannerWrapperLeft = styled.div`
+width:100% ;
+height:350px ;
 border-radius: 8px;
 position: relative;
-left: 50%;
-transform: translateX(-25%);
+left:50% ;
+transform:translateX(-25%) ;
 overflow: hidden;
-
 
 
 & .itemImage{
@@ -81,9 +81,47 @@ overflow: hidden;
   height: 350px;
  
   img{
-    border-radius: 3px;
+    border-radius: 2px;
     width: 100%;
     height: 100%;
   }
 }
 `
+
+export const RecommendMomentWrapper = styled.div`
+  width: 320px;
+  height: 150px;
+  position:absolute ;
+  top: 30%;
+  left: 10%;
+  color:#FFFFFF ;
+ 
+  .text{
+    display:flex ;
+    margin-bottom:20px ;
+    .jian{
+      width:0;
+    height:0;
+    border-top:7px solid transparent;
+    border-bottom:7px solid transparent;
+    border-left:7px solid red;
+    margin-top: 4px;
+    margin-right:5px ;
+    }
+    .recommend{
+
+      color:#FFFFFF;
+  
+    }
+  }
+  .momentTitle{
+    font-size:31px ;
+    width: 320px;
+      display: -webkit-box;
+   -webkit-box-orient: vertical;
+   -webkit-line-clamp: 2;
+   overflow: hidden;
+    
+  }
+`
+

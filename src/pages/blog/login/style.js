@@ -129,9 +129,9 @@ button {
 }
 
 button:hover {
-  background: #eac7cc;
+  /* background: #eac7cc;
   color: #f6f6f6;
-  transition: background-color 1s ease-out;
+  transition: background-color 1s ease-out; */
 }
 
 .button {

@@ -93,6 +93,7 @@ export default memo(function HYAppPlaybar() {
         key: "lyric",
         duration: 0,
         className: 'lyric-message',
+        
       })
     }
   }
